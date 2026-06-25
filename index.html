@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftFetch - Kamo Bidiyo</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f9; }
+        input { padding: 12px; width: 80%; max-width: 350px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; }
+        button { padding: 12px 25px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        #sakamakoDiv { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h2>SwiftFetch 🚀</h2>
+    <p>Saka link din bidiyo daga kowa da kowa</p>
+
+    <input type="text" id="linkInput" placeholder="Saka link a nan...">
+    <br>
+    <button id="maballiBtn" onclick="nemoBidiyo()">Kamo Bidiyo</button>
+    <div id="sakamakoDiv"></div>
+
+    <script>
+        const corsProxies = [
+            "https://api.allorigins.win/raw?url=",
+            "https://corsproxy.io/?",
+            "https://api.codetabs.com/v1/proxy?quest="
+        ];
+
+        async function gwadaFetch(url) {
+            for (let proxy of corsProxies) {
+                try {
+                    let kafa = proxy + encodeURIComponent(url);
+                    let sakamako = await fetch(kafa, { headers: { 'Accept': 'application/json' } });
+                    let rubutu = await sakamako.text();
+
+                    if (rubutu.trim().startsWith("<")) {
+                        console.warn("Proxy ya mayar da HTML, ana gwada wani...");
+                        continue;
+                    }
+
+                    let bayanai = JSON.parse(rubutu);
+                    return bayanai;
+
+                } catch (e) {
+                    console.warn("Proxy ya gaza:", proxy, e.message);
+                    continue;
+                }
+            }
+            throw new Error("Dukan proxies sun gaza. Gwada bayan ɗan lokaci.");
+        }
+
+        async function nemoBidiyo() {
+            let linkDinBidiyo = document.getElementById("linkInput").value.trim();
+            let maballi = document.getElementById("maballiBtn");
+            let sakamakoDiv = document.getElementById("sakamakoDiv");
+
+            if (linkDinBidiyo === "") {
+                alert("⚠️ Don Allah ka saka link din bidiyo.");
+                return;
+            }
+
+            maballi.innerHTML = "Ana Neman Bidiyo... ⏳";
+            maballi.disabled = true;
+            sakamakoDiv.innerHTML = "";
+
+            try {
+                let apiUrl = "https://bk9.fun/download/fb?url=" + encodeURIComponent(linkDinBidiyo);
+                let bayanai = await gwadaFetch(apiUrl);
+
+                let bidiyoHD = null;
+                let bidiyoSD = null;
+
+                if (bayanai.BK9) {
+                    bidiyoHD = bayanai.BK9.hd;
+                    bidiyoSD = bayanai.BK9.sd || bayanai.BK9.video;
+                } else if (bayanai.result) {
+                    bidiyoHD = bayanai.result.hd;
+                    bidiyoSD = bayanai.result.sd || bayanai.result.url;
+                } else if (bayanai.data) {
+                    bidiyoHD = bayanai.data.hd;
+                    bidiyoSD = bayanai.data.sd || bayanai.data.url;
+                }
+
+                if (bidiyoHD || bidiyoSD) {
+                    sakamakoDiv.innerHTML = `
+                        <p>✅ An samu bidiyon! Zaɓi ingancin da kake so:</p>
+                        ${bidiyoHD ? `<a href="${bidiyoHD}" download><button>⬇️ Sauke HD</button></a>` : ""}
+                        ${bidiyoSD ? `<a href="${bidiyoSD}" download><button style="background:#007bff">⬇️ Sauke SD</button></a>` : ""}
+                    `;
+                } else {
+                    sakamakoDiv.innerHTML = "⚠️ An samu amsa amma babu bidiyo a ciki. Duba link din.";
+                    console.log("Amsar API:", bayanai);
+                    sakamakoDiv.innerHTML += "<br><small style='color:red'>Debug: " + JSON.stringify(bayanai) + "</small>";
+                }
+
+            } catch (matsala) {
+                sakamakoDiv.innerHTML = "❌ Matsala: " + matsala.message;
+            }
+
+            maballi.innerHTML = "Kamo Bidiyo";
+            maballi.disabled = false;
+        }
+    </script>
+</body>
+</html>

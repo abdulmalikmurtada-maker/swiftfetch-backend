@@ -1,0 +1,185 @@
+const express = require("express");
+const cors = require("cors");
+const ytdlp = require("yt-dlp-exec");
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Allow requests from GitHub Pages (update YOUR_USERNAME below)
+const allowedOrigins = [
+  "https://YOUR_USERNAME.github.io",
+  "http://localhost:5500",
+  "http://127.0.0.1:5500",
+  "http://localhost:3000",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.some((o) => origin.startsWith(o))) {
+        callback(null, true);
+      } else {
+        callback(new Error("Ba a yarda da wannan tushen ba (CORS)"));
+      }
+    },
+  })
+);
+
+app.use(express.json());
+
+// ─── Health check ───────────────────────────────────────────────
+app.get("/", (req, res) => {
+  res.json({ status: "ok", message: "SwiftFetch backend yana aiki ✅" });
+});
+
+// ─── Get video info (title, thumbnail, formats) ─────────────────
+app.post("/info", async (req, res) => {
+  const { url } = req.body;
+
+  if (!url || !isValidUrl(url)) {
+    return res.status(400).json({ error: "URL ba daidai ba ce." });
+  }
+
+  try {
+    const info = await ytdlp(url, {
+      dumpSingleJson: true,
+      noCheckCertificates: true,
+      noWarnings: true,
+      preferFreeFormats: true,
+      addHeader: ["referer:youtube.com", "user-agent:googlebot"],
+    });
+
+    // Build clean format list
+    const formats = [];
+
+    // Video + audio formats
+    const videoFormats = (info.formats || []).filter(
+      (f) =>
+        f.vcodec !== "none" &&
+        f.acodec !== "none" &&
+        f.ext &&
+        ["mp4", "webm"].includes(f.ext)
+    );
+
+    // Pick best quality levels (avoid duplicates)
+    const seen = new Set();
+    for (const f of videoFormats.sort(
+      (a, b) => (b.height || 0) - (a.height || 0)
+    )) {
+      const key = `${f.height}p-${f.ext}`;
+      if (!seen.has(key) && f.height) {
+        seen.add(key);
+        formats.push({
+          formatId: f.format_id,
+          label: `${f.height}p – ${f.ext.toUpperCase()}`,
+          ext: f.ext,
+          height: f.height,
+          filesize: f.filesize || f.filesize_approx || null,
+        });
+      }
+    }
+
+    // Audio-only option
+    const audioFormat = (info.formats || [])
+      .filter((f) => f.vcodec === "none" && f.acodec !== "none")
+      .sort((a, b) => (b.abr || 0) - (a.abr || 0))[0];
+
+    if (audioFormat) {
+      formats.push({
+        formatId: audioFormat.format_id,
+        label: `Audio kawai – MP3`,
+        ext: "mp3",
+        height: null,
+        filesize: audioFormat.filesize || audioFormat.filesize_approx || null,
+      });
+    }
+
+    res.json({
+      title: info.title,
+      thumbnail: info.thumbnail,
+      duration: info.duration,
+      uploader: info.uploader,
+      formats: formats.slice(0, 6), // max 6 options
+    });
+  } catch (err) {
+    console.error("Info error:", err.message);
+    res.status(500).json({
+      error:
+        "Ba a iya karbar bayanin bidiyo. Tabbatar URL daidai ce kuma bidiyon bai ɓoye ba.",
+    });
+  }
+});
+
+// ─── Download endpoint (streams video to client) ────────────────
+app.get("/download", async (req, res) => {
+  const { url, formatId, ext, title } = req.query;
+
+  if (!url || !isValidUrl(url)) {
+    return res.status(400).json({ error: "URL ba daidai ba ce." });
+  }
+
+  const safeTitle = (title || "video")
+    .replace(/[^\w\s\-]/g, "")
+    .trim()
+    .substring(0, 60);
+  const fileExt = ext || "mp4";
+
+  res.setHeader(
+    "Content-Disposition",
+    `attachment; filename="${safeTitle}.${fileExt}"`
+  );
+  res.setHeader(
+    "Content-Type",
+    fileExt === "mp3" ? "audio/mpeg" : "video/mp4"
+  );
+
+  try {
+    const options = {
+      output: "-",
+      noCheckCertificates: true,
+      noWarnings: true,
+    };
+
+    if (formatId && formatId !== "mp3") {
+      options.format = formatId;
+    } else if (formatId === "mp3" || fileExt === "mp3") {
+      options.extractAudio = true;
+      options.audioFormat = "mp3";
+    } else {
+      options.format = "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best";
+    }
+
+    const download = ytdlp.raw(url, options);
+    download.stdout.pipe(res);
+
+    download.on("error", (err) => {
+      console.error("Download stream error:", err.message);
+      if (!res.headersSent) {
+        res.status(500).json({ error: "Kuskure yayin sauke bidiyo." });
+      }
+    });
+
+    req.on("close", () => {
+      download.kill();
+    });
+  } catch (err) {
+    console.error("Download error:", err.message);
+    if (!res.headersSent) {
+      res.status(500).json({ error: "Ba a iya sauke bidiyon." });
+    }
+  }
+});
+
+// ─── Helpers ────────────────────────────────────────────────────
+function isValidUrl(string) {
+  try {
+    const url = new URL(string);
+    return ["http:", "https:"].includes(url.protocol);
+  } catch {
+    return false;
+  }
+}
+
+app.listen(PORT, () => {
+  console.log(`✅ SwiftFetch backend yana gudana akan tashar ${PORT}`);
+});
