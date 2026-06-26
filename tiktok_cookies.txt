@@ -1,0 +1,36 @@
+# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
+
+.tiktok.com	TRUE	/	TRUE	0	tt_csrf_token	Jpn21YkV-RZ7PAO3xvr-21L_g9CCYn-x2BQE
+.tiktok.com	TRUE	/	TRUE	1798045931	tt_chain_token	c0V7Q8Bwu9kwyfDYRzhgWQ==
+.www.tiktok.com	TRUE	/	TRUE	1808413935	tiktok_webapp_theme_source	light
+.www.tiktok.com	TRUE	/	TRUE	1808413935	tiktok_webapp_theme	light
+.tiktok.com	TRUE	/	TRUE	1816189915	cookie-consent	{%22optional%22:true%2C%22ga%22:true%2C%22af%22:true%2C%22fbp%22:true%2C%22lip%22:true%2C%22bing%22:true%2C%22ttads%22:true%2C%22reddit%22:true%2C%22hubspot%22:true%2C%22version%22:%22v10%22}
+www.tiktok.com	FALSE	/	TRUE	1798045922	g_state	{"i_l":0,"i_ll":1782493914950,"i_e":{"enable_itp_optimization":24},"i_et":1782493914950}
+.tiktok.com	TRUE	/	TRUE	1787677928	multi_sids	7410768331843798022%3A10cf30092ca9532b1246f25207c65e64
+.tiktok.com	TRUE	/	TRUE	1787677928	cmpl_token	AgQYAPMF_hfkTtK25rgvJHFdP_BfK_jjjb-DjmCm1zw
+.tiktok.com	TRUE	/	FALSE	1785085928	passport_auth_status	bd23a789a636c09236d2914759832cc0%2C
+.tiktok.com	TRUE	/	TRUE	1785085928	passport_auth_status_ss	bd23a789a636c09236d2914759832cc0%2C
+.tiktok.com	TRUE	/	TRUE	1813597928	sid_guard	10cf30092ca9532b1246f25207c65e64%7C1782493927%7C15552000%7CWed%2C+23-Dec-2026+17%3A12%3A07+GMT
+.tiktok.com	TRUE	/	TRUE	1798045928	uid_tt	f33667584f2256f270d7446318237664edd6e3ac0d641a444a3f50b2a5fcff85
+.tiktok.com	TRUE	/	TRUE	1798045928	uid_tt_ss	f33667584f2256f270d7446318237664edd6e3ac0d641a444a3f50b2a5fcff85
+.tiktok.com	TRUE	/	TRUE	1798045928	sid_tt	10cf30092ca9532b1246f25207c65e64
+.tiktok.com	TRUE	/	TRUE	1798045928	sessionid	10cf30092ca9532b1246f25207c65e64
+.tiktok.com	TRUE	/	TRUE	1798045928	sessionid_ss	10cf30092ca9532b1246f25207c65e64
+.tiktok.com	TRUE	/	TRUE	1798045928	tt_session_tlb_tag	sttt%7C3%7CEM8wCSypUysSRvJSB8ZeZP_________DIj1h_RE-mMEEns58qCYd6xBKTTX_rEGX2idCEpK8rQE%3D
+.tiktok.com	TRUE	/	TRUE	1798045928	sid_ucp_v1	1.0.1-KGZiNzU1OWQ3NzdhYWZjZDY2NWNlYjJkZDBkMWU4YjBmYjBiZjZiMmEKIQiGiI7iitGV7GYQ5-X60QYYswsgDDCmreG2BjgIQBJIBBADGgJteSIgMTBjZjMwMDkyY2E5NTMyYjEyNDZmMjUyMDdjNjVlNjQyTgogntuFxpWpdMXMopbtvx2Yn5wZIFh9iVaM87ltU66AN4gSIIAqiG1jT50yMq_JJ4V5EOWV6Vry2PyVHKGlvDyVnfMLGAQiBnRpa3Rvaw
+.tiktok.com	TRUE	/	TRUE	1798045928	ssid_ucp_v1	1.0.1-KGZiNzU1OWQ3NzdhYWZjZDY2NWNlYjJkZDBkMWU4YjBmYjBiZjZiMmEKIQiGiI7iitGV7GYQ5-X60QYYswsgDDCmreG2BjgIQBJIBBADGgJteSIgMTBjZjMwMDkyY2E5NTMyYjEyNDZmMjUyMDdjNjVlNjQyTgogntuFxpWpdMXMopbtvx2Yn5wZIFh9iVaM87ltU66AN4gSIIAqiG1jT50yMq_JJ4V5EOWV6Vry2PyVHKGlvDyVnfMLGAQiBnRpa3Rvaw
+.tiktok.com	TRUE	/	FALSE	1798045927	store-idc	alisg
+.tiktok.com	TRUE	/	FALSE	1798045928	store-country-code	ng
+.tiktok.com	TRUE	/	FALSE	1798045928	store-country-code-src	uid
+.tiktok.com	TRUE	/	FALSE	1798045928	tt-target-idc	alisg
+.tiktok.com	TRUE	/	FALSE	1814029930	tt-target-idc-sign	HBkJmSoMokaAw8_-CkQKAnYwGBaKEKVgn-7j8Ls70yXFZOvuqJ0wnA30anS5lcjX2truaYymUsD-GfmbXF-49MI3qpmDdenLIbZrbq60XGOJQlWY0iR09CKFXvINPOakd2eRfiIXnK4u0PE01ih7tyfpzK2u34oudvE6eZ79Jh13hSYOIrwS_qe9PJfsOeUyIOoy8v42LpMJ0kGMR-Kb2I0xMmCc-CrrlmXnSNEhzBPAplxw3YVnOaMY-P72-vHxnj2MaUk7Gj68oBrNnOcDJ5PvpL0NDiDUKDoBCN_M_s5uwU6TNYUXal6YB9e3vekCzmmwszBlXZ0CMyzmx1aIzxNpzv2yTZVpp0Q_T7CJ_7LVUhdLON31jGV9SaArWk1QAaPZL0_Kwy5CL93MS_9BqzGDgQXYc37i6cpJgF-IyQBxrVDB7HPiQDg2PiTivGVdtfANnMXi4jxRN44vtIrL4rMRBxap7eFueKtVopbRBT0bse5Ub71La8iYdjhRj_EB
+www.tiktok.com	FALSE	/	FALSE	1790269928	last_login_method	google_oneclick
+.tiktok.com	TRUE	/	TRUE	0	s_v_web_id	verify_mqv6uzor_LdSz7agx_Ww8P_4AzZ_8t97_JqC2WTJySSci
+.tiktok.com	TRUE	/	FALSE	1798045927	store-country-sign	MEIEDKTXkAwAacWQgoPIAAQgO2HPBcSvbqQCwhhd3km3OljYyXGNKJlfP-xIFoekz1AEEPu_B4JOZmE5BVMFCfyDj5Q
+.tiktok.com	TRUE	/	TRUE	1814029953	ttwid	1%7COGzNzCHDAEK1Xdp0qT9PnU0pfLJLRzB4pAvzNilnDlw%7C1782493952%7C157024bd3c3bfdb6526685209386a71f9ba3a0dc92f96dd2b479694a7c6c7a01
+.tiktok.com	TRUE	/	FALSE	1814029953	odin_tt	8bcaa12b7affca5335dcfe413b5d99c13857fd2d28bffcabb4cd1afab5a6c692db09421680aa22fa047fb1ed1db98b1d97f06ea6c8df5a1fa3dcdddff7b61e98810cc90dc9c44be244cb4f3d53b10411
+.www.tiktok.com	TRUE	/	TRUE	1782925952	perf_feed_cache	{%22expireTimestamp%22:1783098000000%2C%22itemIds%22:[%227651990694600412436%22%2C%227652282548545981704%22]}
+.tiktok.com	TRUE	/	TRUE	1783358003	msToken	eqtq1SAm_jXySa9HGFbmuBtdU7nZsQGMPN0lSo8ci4y8Sye6_FIaaRJ8RDrHnKGRvZjjjPbHQCPobuuU9qlcnVrlUfr3vepW2wIj8h4eA2NRgYsb7A_TWuvL0UauUnih_luf5Ns7gn3x2PiMZbHfFw==
+www.tiktok.com	FALSE	/	FALSE	1790270002	msToken	eqtq1SAm_jXySa9HGFbmuBtdU7nZsQGMPN0lSo8ci4y8Sye6_FIaaRJ8RDrHnKGRvZjjjPbHQCPobuuU9qlcnVrlUfr3vepW2wIj8h4eA2NRgYsb7A_TWuvL0UauUnih_luf5Ns7gn3x2PiMZbHfFw==

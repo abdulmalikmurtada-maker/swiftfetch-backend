@@ -1,0 +1,14 @@
+# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
+
+.snapchat.com	TRUE	/	FALSE	1782580212	_gid	GA1.2.745454236.1782493590
+.snapchat.com	TRUE	/	TRUE	1814029813	sc-language	en-GB
+.snapchat.com	TRUE	/	TRUE	1782495620	_sc-sid	5e1fcd8a-4c22-4667-9170-f6d1ee7be889
+.snapchat.com	TRUE	/	TRUE	1814029589	EssentialSession	true
+.snapchat.com	TRUE	/	TRUE	1814029813	sc-wcid	23359a5f-9948-43ed-8bbb-d03a7b758867
+.snapchat.com	TRUE	/	FALSE	1785085590	blizzard_client_id	cb03e3d6-0f54-4775-977d-a0dceb18d564:1782493590230
+.snapchat.com	TRUE	/	FALSE	1782495622	blizzard_web_session_id	hjPz39DmX0PFgP4X
+.snapchat.com	TRUE	/	FALSE	1782493872	_gat	1
+.snapchat.com	TRUE	/	FALSE	1817053813	_ga	GA1.1.1811291486.1782493590
+.snapchat.com	TRUE	/	FALSE	1817053813	_ga_DPDHJB4310	GS2.1.s1782493585$o1$g1$t1782493812$j59$l0$h0
