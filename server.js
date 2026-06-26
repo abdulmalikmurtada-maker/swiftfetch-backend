@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 // Allow requests from GitHub Pages (update YOUR_USERNAME below)
 const allowedOrigins = [
-  "https://YOUR_USERNAME.github.io",
+  "https://abdulmalikmurtada-maker.github.io",
   "http://localhost:5500",
   "http://127.0.0.1:5500",
   "http://localhost:3000",
