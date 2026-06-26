@@ -173,7 +173,7 @@ app.get("/download", async (req, res) => {
       options.format = "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best";
     }
 
-    const download = ytdlp.raw(url, options);
+    const download = ytdlp.exec(url, options, { stdio: ['ignore', 'pipe', 'ignore'] });
     download.stdout.pipe(res);
 
     download.on("error", (err) => {
