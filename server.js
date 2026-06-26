@@ -41,13 +41,37 @@ app.post("/info", async (req, res) => {
   }
 
   try {
-    const info = await ytdlp(url, {
-      dumpSingleJson: true,
-      noCheckCertificates: true,
-      noWarnings: true,
-      preferFreeFormats: true,
-      addHeader: ["referer:youtube.com", "user-agent:googlebot"],
-    });
+        // Tsari don gano wane cookie za a yi amfani da shi
+        let cookieFile = "";
+        if (url.includes("youtube.com") || url.includes("youtu.be")) {
+            cookieFile = "youtube_cookies.txt";
+        } else if (url.includes("facebook.com") || url.includes("fb.watch")) {
+            cookieFile = "facebook_cookies.txt";
+        } else if (url.includes("tiktok.com")) {
+            cookieFile = "tiktok_cookies.txt";
+        } else if (url.includes("snapchat.com")) {
+            cookieFile = "snapchat_cookies.txt";
+        } else if (url.includes("twitter.com") || url.includes("x.com")) {
+            cookieFile = "x-cookies.txt";
+        } else if (url.includes("instagram.com")) {
+            cookieFile = "instagram_cookies.txt";
+        }
+
+        // Haɗa tsarin yt-dlp
+        const ytdlpOptions = {
+            dumpSingleJson: true,
+            noCheckCertificates: true,
+            noWarnings: true,
+            preferFreeFormats: true,
+            addHeader: ["referer:youtube.com", "user-agent:googlebot"],
+        };
+
+        // Idan akwai cookie din, a saka masa
+        if (cookieFile !== "") {
+            ytdlpOptions.cookies = cookieFile;
+        }
+
+        const info = await ytdlp(url, ytdlpOptions);
 
     // Build clean format list
     const formats = [];
