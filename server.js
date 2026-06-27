@@ -63,6 +63,7 @@ app.post("/info", async (req, res) => {
             noCheckCertificates: true,
             noWarnings: true,
             preferFreeFormats: true,
+          format: 'bv*+ba/b',
             addHeader: ["referer:youtube.com", "user-agent:googlebot"],
         };
 
