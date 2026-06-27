@@ -10,4 +10,4 @@ RUN npm install
 COPY . .
 
 # Umarnin kunna sabar
-CMD ["npm", "start"
+CMD ["npm", "start"]
