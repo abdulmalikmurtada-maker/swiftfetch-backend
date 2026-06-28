@@ -79,13 +79,11 @@ app.post("/info", async (req, res) => {
 
     // Video + audio formats
     const videoFormats = (info.formats || []).filter(
-      (f) =>
-      
-        f.acodec !== "none" &&
-        f.ext &&
-        ["mp4", "webm"].includes(f.ext)
-    );
-
+  (f) =>
+    f.vcodec !== "none" &&
+    f.ext &&
+    ["mp4", "webm"].includes(f.ext)
+);
     // Pick best quality levels (avoid duplicates)
     const seen = new Set();
     for (const f of videoFormats.sort(
