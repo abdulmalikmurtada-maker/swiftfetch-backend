@@ -161,12 +161,13 @@ app.get("/download", async (req, res) => {
       output: "-",
       noCheckCertificates: true,
       noWarnings: true,
-    };
-  if (formatId === "mp3" || fileExt === "mp3") {
-        options.extractAudio = true;
-        options.audioFormat = "mp3";
-    } else {
-        //
+   if (formatId === "mp3" || fileExt === "mp3") {
+            options.extractAudio = true;
+            options.audioFormat = "mp3";
+        } else {
+            options.format = "best[ext=mp4]/best";
+    }
+    
     const download = ytdlp.exec(url, options, { stdio: ['ignore', 'pipe', 'ignore'] });
     download.stdout.pipe(res);
     download.on("error", (err) => {
