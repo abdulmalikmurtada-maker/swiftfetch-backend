@@ -158,15 +158,17 @@ app.get("/download", async (req, res) => {
   );
   try {
     const options = {
-      output: "-",
-      noCheckCertificates: true,
-      noWarnings: true};//
-   if (formatId === "mp3" || fileExt === "mp3") {
+            output: "-",
+            noCheckCertificates: true,
+            noWarnings: true
+        }; // <--- MUN SAKA ALAMAR RUFE RUMBU A NAN
+
+        if (formatId === "mp3" || fileExt === "mp3") {
             options.extractAudio = true;
-            options.audioFormat = "mp3";){
+            options.audioFormat = "mp3"; // <--- MUN GOGE WANCAN '){' DIN KUSKUREN YANZU
         } else {
             options.format = "best[ext=mp4]/best";
-    }
+        }
     
     const download = ytdlp.exec(url, options, { stdio: ['ignore', 'pipe', 'ignore'] });
     download.stdout.pipe(res);
