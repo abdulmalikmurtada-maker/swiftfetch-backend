@@ -64,8 +64,7 @@ app.post("/info", async (req, res) => {
             noWarnings: true,
             preferFreeFormats: true,
           format: 'bv*+ba/b',
-            addHeader: ["referer:youtube.com", "user-agent:googlebot"],
-        };
+            
 
         // Idan akwai cookie din, a saka masa
         if (cookieFile !== "") {
