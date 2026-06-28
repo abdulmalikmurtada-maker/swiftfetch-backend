@@ -156,12 +156,11 @@ app.get("/download", async (req, res) => {
     "Content-Type",
     fileExt === "mp3" ? "audio/mpeg" : "video/mp4"
   );
-
   try {
     const options = {
       output: "-",
       noCheckCertificates: true,
-      noWarnings: true,
+      noWarnings: true};//
    if (formatId === "mp3" || fileExt === "mp3") {
             options.extractAudio = true;
             options.audioFormat = "mp3";){
