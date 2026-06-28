@@ -58,16 +58,18 @@ app.post("/info", async (req, res) => {
         }
 
         // Haɗa tsarin yt-dlp
-        const ytdlpOptions = {
-            dumpSingleJson: true,
-            noCheckCertificates: true,
-            noWarnings: true,
-            preferFreeFormats: true,
-          format: 'bv*+ba/b',
-        };
+   // Hada tsarin yt-dlp
+    const ytdlpOptions = {
+        dumpSingleJson: true,
+        noCheckCertificates: true,
+        noWarnings: true,
+        preferFreeFormats: true,
+        format: 'bv*+ba/b'
+    };  // <--- WANNAN ALAMAR ITA TA BACE A LAYI NA 67
 
-        // Idan akwai cookie din, a saka masa
-        if (cookieFile !== "") {
+    // Idan akwai cookie din, a saka masa
+    if (cookieFile !== "") {
+        ytdlpOptions.cookies = cookieFile
             ytdlpOptions.cookies = cookieFile;
         }
 
