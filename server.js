@@ -199,6 +199,8 @@ function isValidUrl(string) {
   }
 }
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`✅ SwiftFetch backend yana gudana akan tashar ${PORT}`);
+});
   console.log(`✅ SwiftFetch backend yana gudana akan tashar ${PORT}`);
 });
