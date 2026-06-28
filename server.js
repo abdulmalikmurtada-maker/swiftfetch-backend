@@ -78,12 +78,9 @@ app.post("/info", async (req, res) => {
     const formats = [];
 
     // Video + audio formats
-const videoFormats = (info.formats || []).filter(
-            (f) =>
-            f.vcodec !== "none" &&
-            f.acodec !== "none" && // <--- WANNAN LAYIN ZAI TABBATAR DA AKWAI SAUTI
-            f.ext &&
-            ["mp4", "webm"].includes(f.ext)
+      // Sabon tsari mai sassauci domin karbar Snapchat da sauran su
+        const videoFormats = (info.formats || []).filter(
+            (f) => f.url && (f.protocol === "https" || f.protocol === "http") && (f.ext === "mp4" || f.ext === "webm")
         );
     const seen = new Set();
     for (const f of videoFormats.sort(
