@@ -201,4 +201,3 @@ function isValidUrl(string) {
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`✅ SwiftFetch backend yana gudana akan tashar ${PORT}`);
-});
