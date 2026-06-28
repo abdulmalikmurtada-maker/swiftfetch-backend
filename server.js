@@ -165,7 +165,7 @@ app.get("/download", async (req, res) => {
     };
 
     if (formatId && formatId !== "mp3") {
-      options.format = formatId;
+        options.format = `${formatId}+bestaudio/best`;
     } else if (formatId === "mp3" || fileExt === "mp3") {
       options.extractAudio = true;
       options.audioFormat = "mp3";
