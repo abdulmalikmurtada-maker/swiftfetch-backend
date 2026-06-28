@@ -79,7 +79,6 @@ app.post("/info", async (req, res) => {
 
     // Video + audio formats
 const videoFormats = (info.formats || []).filter(
-const videoFormats = (info.formats || []).filter(
             (f) =>
             f.vcodec !== "none" &&
             f.acodec !== "none" && // <--- WANNAN LAYIN ZAI TABBATAR DA AKWAI SAUTI
