@@ -161,12 +161,13 @@ app.get("/download", async (req, res) => {
 
         if (formatId === "mp3" || fileExt === "mp3") {
             options.extractAudio = true;
-            options.audioFormat = "mp3"; // <--- MUN GOGE WANCAN '){' DIN KUSKUREN YANZU
+if (formatId === "mp3" || fileExt === "mp3") {
+            options.extractAudio = true;
+            options.audioFormat = "mp3";
         } else {
-            options.format = "best[ext=mp4]/best";
-        }
-    
-    const download = ytdlp.exec(url, options, { stdio: ['ignore', 'pipe', 'ignore'] });
+            // Idan akwai formatId daga shafin gaba mu yi amfani da shi, in babu mu nemi 'b' (hoto da sauti a hade)
+            options.format = (formatId && formatId !== "undefined" && formatId !== "null") ? formatId : "b[ext=mp4]/b";
+              }
     download.stdout.pipe(res);
     download.on("error", (err) => {
       console.error("Download stream error:", err.message);
