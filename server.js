@@ -80,7 +80,7 @@ app.post("/info", async (req, res) => {
     // Video + audio formats
     const videoFormats = (info.formats || []).filter(
       (f) =>
-        f.vcodec !== "none" &&
+      
         f.acodec !== "none" &&
         f.ext &&
         ["mp4", "webm"].includes(f.ext)
