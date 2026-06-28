@@ -79,13 +79,13 @@ app.post("/info", async (req, res) => {
 
     // Video + audio formats
 const videoFormats = (info.formats || []).filter(
-  (f) =>
-    f.vcodec !== "none" &&
-    
-    f.ext &&
-    ["mp4", "webm"].includes(f.ext)
-);
-    // Pick best quality levels (avoid duplicates)
+const videoFormats = (info.formats || []).filter(
+            (f) =>
+            f.vcodec !== "none" &&
+            f.acodec !== "none" && // <--- WANNAN LAYIN ZAI TABBATAR DA AKWAI SAUTI
+            f.ext &&
+            ["mp4", "webm"].includes(f.ext)
+        );
     const seen = new Set();
     for (const f of videoFormats.sort(
       (a, b) => (b.height || 0) - (a.height || 0)
