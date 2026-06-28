@@ -69,7 +69,6 @@ app.post("/info", async (req, res) => {
 
     // Idan akwai cookie din, a saka masa
     if (cookieFile !== "") {
-        ytdlpOptions.cookies = cookieFile
             ytdlpOptions.cookies = cookieFile;
         }
 
