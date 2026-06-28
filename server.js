@@ -158,16 +158,13 @@ app.get("/download", async (req, res) => {
             noCheckCertificates: true,
             noWarnings: true
         }; // <--- MUN SAKA ALAMAR RUFE RUMBU A NAN
-
-        if (formatId === "mp3" || fileExt === "mp3") {
- if (formatId === "mp3" || fileExt === "mp3") {
+    if (formatId === "mp3" || fileExt === "mp3") {
             options.extractAudio = true;
             options.audioFormat = "mp3";
         } else {
-            // Idan akwai formatId daga shafin gaba mu yi amfani da shi, in babu mu nemi 'b' (hoto da sauti a hade)
+            // Idan akwai formatId daga shafin gaba mu yi amfani da shi, in babu mu nemi 'b' (hoto da sauti a hade don TikTok)
             options.format = (formatId && formatId !== "undefined" && formatId !== "null") ? formatId : "b[ext=mp4]/b";
- }}
-    download.stdout.pipe(res);
+    }
     download.on("error", (err) => {
       console.error("Download stream error:", err.message);
       if (!res.headersSent) {
